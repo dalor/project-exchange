@@ -13,7 +13,7 @@ app = Flask(__name__)
 #app.config.from_object(__name__)
 app.config.update(dict(
     DATABASE=os.path.join(app.root_path, 'db.db'),
-    URL='http://flask-dudavolodimir.c9users.io/',
+    URL='https://project-exchange.herokuapp.com/',
     DEBUG=True,
     MIN_LOGIN=6,
     MAX_LOGIN=64,
