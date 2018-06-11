@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>{% if not title %}Біржа проектів{% else %}{{title}}{% endif %}</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css">
+  <link href="https://cdn.quilljs.com/1.3.6/quill.snow.css" rel="stylesheet">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
+  <script src="https://cdn.quilljs.com/1.3.6/quill.min.js"></script>
+  <script type="text/javascript" src="{{ url_for('static', filename='image-resize.min.js') }}"></script>
+  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+  <script src="{{ url_for('static', filename='script.js') }}"></script>
+</head>
+<body>
+<div class="container-fluid">
+    <div class="row">
+		<div class="col-12 top-head">
+			<!--<div class="row">
+			<div class="col-lg-3 col-md-4 search">
+				Пошуковий блок...
+			</div>
+			<div class="col-lg-9 col-md-8">
+				<div class="container-fluid main-url">
+				<a>one3</a>
+				<a>one4</a>
+				<a>one5</a>
+				</div>
+			</div>
+			</div> -->
+		</div>
+		<div class="col-12 head">
+		<div class="container title">
+			<h2>Біржа проектів</h2>
+		</div>
+		</div>
+		<div class="container-fluid main">
+			<div class="row">
+				<div class="col-lg-3 col-md-4 menu">
+					{% if session.logged_in %}
+					<div class="mono">
+						<h5 class="title">Меню користувача</h5>
+						<div class="container-fluid">
+							{% if session.employer %}
+							<a href="/write">Додати роботу</a>
+							<a href="/user/{{ session.login }}">Додані мною роботи</a>
+							<a href="/profile/{{ session.login }}">Мій профіль</a>
+							{% endif %}
+							{% if session.employee %}
+							<a href="/my_works">Мої роботи</a>
+							{% endif %}
+							<a href="/">Інше...</a>
+							{% if session.admin %}
+							<a href="/edit_users">Редагувати користувачів</a>
+							{% endif %}
+							<a href="/logout">Вийти</a>
+						</div>
+					</div>
+					{% else %}
+					<div class="mono login_f">
+						<h5 class="title">ВХІД <a onclick="hide_login()">РЕЄСТРАЦІЯ</a></h5>
+						<div class="c-login">
+							<div class="l_errors"></div>
+							<input class="login" type="text" placeholder="Логін..." id="l_login">
+							<input class="password" type="password" placeholder="Пароль..." id="l_password">
+							<div class="but_login" id="send_login">ВВІЙТИ</div>
+						</div>
+					</div>
+					<div class="mono register_f">
+						<h5 class="title">РЕЄСТРАЦІЯ <a onclick="hide_register()">ВХІД</a></h5>
+						<div class="c-login">
+							<div class="r_errors"></div>
+							<input class="login" type="text" placeholder="Логін..." id="r_login">
+							<input class="password" type="password" placeholder="Пароль..." id="r_password">
+							<input class="rep_password" type="password" placeholder="Повторіть пароль..." id="r_r_password">
+							<input class="e-mail" type="text" placeholder="E-mail..." id="r_email">
+							<select id="r_type">
+								<option value="employee" selected>Коритувач</option>
+								<option value="employer">Працедавець</option>
+							</select>
+							<input class="name" type="text" placeholder="Ім'я та прізвище..." id="r_name">
+							<div class="but_login" id="send_register">Реєстрація</div>
+						</div>
+					</div>
+					{% endif %}
+					<div class="mono">
+						<h5 class="title">Рубрики</h5>
+						<div class="container-fluid">
+							<a href="">Буде 1..</a>
+							<a href="">Буде 2..</a>
+							<a href="">Буде 3..</a>
+						</div>
+					</div>
+				</div> 
+				<div class="col-lg-9 col-md-8 content">
+					{% block body %}{% endblock %}
+				</div>
+			</div>
+		</div>
+		<div class="col-12 end"></div>
+    </div>
+</div>
+</body>
+</html>

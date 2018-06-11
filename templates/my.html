@@ -1,0 +1,8 @@
+{% extends "layout.html" %}
+{% block body %}
+{% for p in projects %}
+  					<div class="article">
+						<h5 class="article-head title"><a href="/task/{{p.task}}">Робота: #{{ p.task }}</a></h5>
+					</div>
+{% endfor %}
+{% endblock %}

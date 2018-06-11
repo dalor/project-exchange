@@ -1,0 +1,14 @@
+{% extends "layout.html" %}
+{% block body %}
+  					<div class="container">
+  					    <div class="project">
+						   <h3>Профіль {% if session.login == p.login %}<a href="/edit_profile" class="edit_p">Редагувати користувача</a>{% endif %}</h3>
+						   <div class="profile">
+						   <a>Логін: {{p.login}}</a><br>
+						   <a>Ім`я та прізвище: {{p.name}}</a><br>
+						   <a href="/user/{{p.login}}">Таски</a>
+						   </div>
+						</div>
+					</div>
+					</div>
+{% endblock %}

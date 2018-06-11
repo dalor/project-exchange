@@ -1,0 +1,22 @@
+{% extends "layout.html" %}
+{% block body %}
+{% for p in projects %}
+  					<div class="article">
+						<h5 class="article-head title">{{p.title}}{% if session.editor %}<a onclick="publish({{p.id}});" class="publish_p">PUB</a> <a href="/edit_un/{{p.id}}" class="edit_p">EDIT</a> <a onclick="delete_un({{p.id}});" class="delete_p">DEL</a>{% endif %}</h5>
+						<div class="text">
+							{{p.description}}
+						</div>
+						<div class="article-bottom title">
+							<a href="/project_un/{{p.id}}">read more</a>
+						</div>
+					</div>
+{% endfor %}
+				<div class="nav">
+					{% if previous %}
+					<a href="{{ previous }}" class="left">&#8592;</a>
+					{% endif %}
+					{% if next %}
+					<a href="{{ next }}" class="right">&#8594;</a>
+					{% endif %}
+				</div>
+{% endblock %}

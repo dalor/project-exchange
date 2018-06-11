@@ -1,0 +1,19 @@
+{% extends "layout.html" %}
+{% block body %}
+					<div class="write">
+  					    <div class="container"><h2>Редагувати проект (замовлення)</h2></div>
+  					    <div class="w_block">
+                        <input class="title_value" value="{{ p.title }}" type="text" title="Title" placeholder="Заголовок..." id="title">
+                        <div class="more desc_v"  turn="#title">Як написати заголовок...</div>
+                        <input id="e_id" value="{{p.id}}" type="hidden">
+                        <input class="title_value" value="{{p.subject}}" title="Subject" type="hidden" placeholder="Тема..." id="subject">
+                        <input type="date" id="deadline" value="{{p.deadline}}" placeholder="Deadline...">
+                        <input type="number" id="max_people" value="{{p.max_people}}" placeholder="Максимальна кількість людей..." min="1" max="50">
+                        <textarea class="desc_value" title="Description" placeholder="Короткий опис..." id="description">{{ p.description }}</textarea>
+                        <div class="more desc_v" turn="#description">Як написати короткий опис...</div>
+                        <div class="editor_pl"><div id="text">{{p.content | safe}}</div></div>
+                        </div>
+                        <input class="butt btn" type="button" id="send_edit" value="Надіслати">
+					</div>
+					<script>edit();</script>
+{% endblock %}

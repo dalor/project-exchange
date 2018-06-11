@@ -1,0 +1,24 @@
+{% extends "layout.html" %}
+{% block body %}
+  					<div class="container">
+  					    <div class="project">
+						    <h3>{{p.title}} {% if session.employee and not (w or w == "") %}<a onclick="goto({{p.id}});" class="delete_p">Взяти цю роботу</a>{% endif %}{% if session.login == p.login %}<a href="/edit/{{p.id}}" class="edit_p">EDIT</a> <a onclick="delete_p({{p.id}});" class="delete_p">DEL</a>{% endif %}</h3>
+						    <div id="text_o" class="ttext">{{p.content | safe}}</div>
+						    {% if w or w == "" %}
+						    <h3>My work</h3>
+						    <div id="text">{{w | safe}}</div>
+						    <input id="t_id" value="{{p.id}}" type="hidden">
+						    <input class="butt btn" type="button" id="send_work" value="Send">
+						    <script>edit();</script>
+						    {% endif %}
+						</div>
+						<script>set_edit('#text_o');</script>
+						{% if r %}{% for r0 in r %}
+						<div class="project">
+						    <h3>{{ r0.login}}: </h3>
+						    <div id="text_{{ r0.login }}" class="ttext">{{ r0.content | safe}}</div>
+						</div>
+						<script>set_edit('#text_{{ r0.login }}');</script>
+						{% endfor %}{% endif %}
+					</div>
+{% endblock %}

@@ -1,0 +1,24 @@
+{% extends "layout.html" %}
+{% block body %}
+{% for p in projects %}
+  					<div class="article">
+						<h5 class="article-head title"><a href="/task/{{p.id}}">{{ p.title }} <div class="right">({{ p.now_people }} / {{ p.max_people }})</div></a></h5>
+						<div class="text">
+							{{ p.description }}
+						</div>
+						<div class="article-bottom title">
+							<a>Замовник: </a><a href="/profile/{{ p.login }}">{{ p.login }}</a>
+							<a>Deadline: {{ p.deadline }}</a>
+							<a class="read_more" href="/task/{{ p.id }}">більше...</a>
+						</div>
+					</div>
+{% endfor %}
+				<div class="nav">
+					{% if previous %}
+					<a href="{{ previous }}" class="left">&#8592;</a>
+					{% endif %}
+					{% if next %}
+					<a href="{{ next }}" class="right">&#8594;</a>
+					{% endif %}
+				</div>
+{% endblock %}
